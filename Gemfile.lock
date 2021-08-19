@@ -449,6 +449,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yard (0.9.26)
     zeitwerk (2.3.0)
 
 PLATFORMS
@@ -526,6 +527,7 @@ DEPENDENCIES
   validate_url
   web-console (>= 3.3.0)
   webmock (~> 3.12)
+  yard
 
 RUBY VERSION
    ruby 2.6.6p146

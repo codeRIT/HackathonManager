@@ -4,7 +4,15 @@ class Manage::TrackableEventsController < Manage::ApplicationController
 
   respond_to :json
 
-  # GET /manage/trackable_events
+  # Retrieves all or the current user's TrackableEvent objects.
+  # @param trackable_event [TrackableEvent, nil]  If a TrackableEvent is
+  #                                               present only the current
+  #                                               user's associated
+  #                                               TrackableEvent objects will
+  #                                               be retrieved.
+  # @!method                                      index(trackable_event = nil)
+  # @endpoint                                     /manage/trackable_events
+  # @http_method                                  GET
   def index
     @trackable_events = TrackableEvent.all
     @params = {}
@@ -14,21 +22,20 @@ class Manage::TrackableEventsController < Manage::ApplicationController
     end
   end
 
-  # GET /manage/trackable_events/1
+  # Retrieves information on a specific TrackableEvent.
+  # @param id [Integer]  ID of the trackable event to show
+  # @!method            show(id)
+  # @endpoint           /manage/trackable_events/id
+  # @http_method        GET
   def show
   end
 
-  # GET /manage/trackable_events/new
-  def new
-    trackable_tag_id = params[:trackable_tag_id]
-    @trackable_event = TrackableEvent.new(trackable_tag_id: trackable_tag_id)
-  end
-
-  # GET /manage/trackable_events/1/edit
-  def edit
-  end
-
-  # POST /manage/trackable_events
+  # Creates a new TrackableEvent object.
+  # @endpoint           /manage/trackable_events
+  # @http_method        POST
+  # @return [200]       OK if TrackableEvent object was created
+  # @return [422]       Unprocessable Entity if supplied TrackableEvent data
+  #                     did not meet requirements or the saving process failed
   def create
     @trackable_event = TrackableEvent.new(trackable_event_params.merge(user_id: current_user.id))
 
@@ -39,7 +46,16 @@ class Manage::TrackableEventsController < Manage::ApplicationController
     end
   end
 
-  # PATCH/PUT /manage/trackable_events/1
+  # Updates a given TrackableEvent object.
+  # @param id [Integer]   ID of the trackable event to update
+  # @!method              update(id)
+  # @endpoint             /manage/trackable_events/id
+  # @http_method          PATCH
+  # @http_method          PUT
+  # @return [200]         OK if TrackableEvent object was updated
+  # @return [422]         Unprocessable Entity if supplied TrackableEvent data
+  #                       did not meet requirements or the saving process
+  #                       failed
   def update
     if @trackable_event.update(trackable_event_params)
       head :ok
@@ -48,7 +64,13 @@ class Manage::TrackableEventsController < Manage::ApplicationController
     end
   end
 
-  # DELETE /manage/trackable_events/1
+  # Destroys a given TrackableEvent object.
+  # @param id [Integer]   ID of the trackable event to destroy
+  # @!method              destroy(id)
+  # @endpoint             /manage/trackable_events/id
+  # @http_method          DELETE
+  # @return [200]         OK if TrackableEvent object was destroyed
+  # @return [422]         Unprocessable Entity if the destroy process failed
   def destroy
     @trackable_event.destroy
     head :ok
