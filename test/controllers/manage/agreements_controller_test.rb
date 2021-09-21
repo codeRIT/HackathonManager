@@ -35,6 +35,7 @@ class Manage::AgreementsControllerTest < ActionController::TestCase
       @user = create(:user)
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "not allow access to manage_agreements#index" do
@@ -65,6 +66,7 @@ class Manage::AgreementsControllerTest < ActionController::TestCase
       @user = create(:volunteer)
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "not allow access to manage_agreements#index" do
@@ -96,6 +98,7 @@ class Manage::AgreementsControllerTest < ActionController::TestCase
       @user = create(:organizer)
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "not allow access to manage_agreements#index" do
@@ -126,6 +129,7 @@ class Manage::AgreementsControllerTest < ActionController::TestCase
       @user = create(:director)
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "allow access to manage_agreements#index" do

@@ -25,7 +25,7 @@ require "sidekiq/testing"
 require "webmock/minitest"
 require_relative './matchers'
 
-Minitest::Reporters.use!
+Minitest::Reporters.use! unless ENV['RM_INFO']
 
 def sample_file(filename = "sample_pdf.pdf")
   File.new("test/fixtures/#{filename}")

@@ -33,6 +33,7 @@ class Manage::ConfigsControllerTest < ActionController::TestCase
       @user = create(:user)
       @request.env["devise.mapping"] = Devise.mappings[:director]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "not allow access to manage_configs#index" do
@@ -66,6 +67,7 @@ class Manage::ConfigsControllerTest < ActionController::TestCase
       @user = create(:volunteer)
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "not allow access to manage_configs#index" do
@@ -96,6 +98,7 @@ class Manage::ConfigsControllerTest < ActionController::TestCase
       @user = create(:organizer)
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "not allow access to manage_configs#index" do
@@ -126,6 +129,7 @@ class Manage::ConfigsControllerTest < ActionController::TestCase
       @user = create(:director)
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     end
 
     should "allow access to manage_configs#index" do

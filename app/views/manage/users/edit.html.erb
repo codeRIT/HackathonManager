@@ -1,8 +1,0 @@
-<%= render "layouts/manage/page_title", title: @user.full_name, subtitle: t(:subtitle, scope: 'pages.manage.users.edit') do %>
-  <div class="btn-group">
-    <%= link_to t(:cancel, scope: "pages.manage.users.edit"), manage_user_path(@user), class: 'btn btn-sm btn-outline-secondary' %>
-    <%= link_to t(:reset_password, scope: "pages.manage.users.edit"), reset_password_manage_user_path(@user), method: :patch, data: { confirm: t(:confirm_reset_password, scope: "pages.manage.users.edit", full_name: @user.full_name, first_name: @user.first_name)}, class: 'btn btn-sm btn-outline-secondary' %>
-    <%= link_to t(:delete, scope: "pages.manage.users.edit"), manage_user_path(@user), method: :delete, data: { confirm: "Are you sure? #{@user.email} will be permanently deleted. This action is irreversible." }, class: 'btn btn-sm btn-outline-secondary' %>
-  </div>
-<% end %>
-<%= render 'form' %>

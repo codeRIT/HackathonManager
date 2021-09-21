@@ -8,6 +8,7 @@ class UsersControllerTest < ActionController::TestCase
 
   should "allow access to user#get" do
     sign_in @user
+			@request.headers["Authorization"] = "Bearer " + @user.generate_jwt
     get :show, params: { format: :json }
     assert_response :success
   end

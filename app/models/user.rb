@@ -3,9 +3,8 @@ class User < ApplicationRecord
 
   strip_attributes
 
-  devise :database_authenticatable, :registerable, :timeoutable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :doorkeeper, :omniauthable, omniauth_providers: [:mlh]
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   has_one :questionnaire
   has_many :access_grants, class_name: "Doorkeeper::AccessGrant",
@@ -24,6 +23,12 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
 
   enum role: { user: 0, volunteer: 1, organizer: 2, director: 3 }
+
+  def generate_jwt
+    JWT.encode({ id: id,
+                 exp: 30.days.from_now.to_i },
+               Rails.application.secrets.secret_key_base)
+  end
 
   def set_default_role
     self.role ||= :user
