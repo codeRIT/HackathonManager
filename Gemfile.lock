@@ -409,7 +409,8 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.2.6)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     roadie (5.2.1)
       css_parser (~> 1.4)
       nokogiri (~> 1.15)
@@ -433,7 +434,7 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
-    selenium-webdriver (4.19.0)
+    selenium-webdriver (4.21.0)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -486,6 +487,7 @@ GEM
     stringio (3.1.0)
     strip_attributes (1.13.0)
       activemodel (>= 3.0, < 8.0)
+    strscan (3.1.0)
     temple (0.10.3)
     test-unit (3.6.2)
       power_assert
